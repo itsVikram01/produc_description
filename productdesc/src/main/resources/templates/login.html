@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Login page</title>
+</head>
+<body>
+	<section>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card mt-2" style="width: 60%; height: 90vh">
+						<div class="container text-center">
+							<img src="" th:src="@{/img/users.png}" alt="" style="width:50%; height:40px;" />
+						</div>
+						<form id="login-form" class="form" action="" th:action="@{/dologin}" method="post">
+							<h1 class="text-center">Login Here</h1>
+							
+							<div th:if="${param.error}" class="alert alert-danger" >
+								Invalid username and password!!
+							</div>
+							<div th:if="${param.logout}" class="alert alert-success" >
+								You have been logged out!!
+							</div>
+							
+							<!-- Role field -->
+							<div class="form-group mt-2">
+								<label for="role" >Role</label> 
+								<select class="form-control" name="role">
+									<option value="">--Select Role--</option>
+									<option th:each="role : ${role}"  th:text="${role}"/>  
+								</select>
+							</div>
+													
+							<div class="form-outline mb-3 mt-3">
+								<label class="form-label" for="username">Email	ID</label>
+								<input class="form-control" type="email" id="username" name="username"/>
+							</div>
+							
+							<div class="form-outline mb-3">
+								<label class="form-label" for="password">Password</label>
+								<input class="form-control" type="password" id="password" name="password" />
+							</div>
+					            					            
+					        <!-- <a href="" th:href="@{'/signup/'}">NotHaveAccount?SignUp!!</a> -->	
+					            
+
+							<div class="text-center mt-3">
+								<button type="submit" class="btn btn-primary btn-block" value="submit">Login</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

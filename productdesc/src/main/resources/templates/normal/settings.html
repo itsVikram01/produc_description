@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Settings</title>
+</head>
+<body>
+	<section style="margin: 20px;">
+		<h1>Welcome!! <span th:text="${user.name}"></span></h1>
+		<h2>This is User private Settings page</h2>
+	</section>
+</body>
+</html>

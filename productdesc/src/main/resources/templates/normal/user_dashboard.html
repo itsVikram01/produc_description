@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">User DashBoard</title>
+</head>
+<body>
+	<section style="margin: 20px;">
+		<div class="container">
+			<div class="card">
+				<div class="card-body text-center">
+					<div>
+						<!-- <img class="myprofile_pic" style="height: 100px; width: 100px;" th:src="@{'/img/'+${user.imgUrl}}" alt="my_profile_pic"> -->
+						<h1 class="text-center">Welcome!! To DashBoard</h1>
+					</div>
+					<hr />
+					<div>
+						<h3>Name : <span th:text="${user.name}"></span></h3>	
+						<h3>Email : <span th:text="${user.email}"></span></h3>			
+					</div>
+					<div>		
+						<h3 class="text-center text-secondary mt-3">Start Adding Your Products</h3>
+						<a class="btn btn-primary mt-2" th:href="@{/user/add-product}">Add New Product</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>About page</title>
+</head>
+<body>
+	<section>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card mt-2" style="width: 60%">
+						<div class="container text-center">
+							<img src="" th:src="@{/img/quote.jpeg}" alt="" style="width:100%; height:50px;" />
+						</div>
+						<h1 class="text-center">Register Here !!</h1>
+						
+						<!-- A simple primary alert—check it out! -->
+						<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+					  		<p class="text-center" th:text="${session.message.content}"></p>
+					  		<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+						
+						<form novalidate="novalidate" action="" th:action="@{/register}" th:object="${user}" method="post">
+							
+							<!-- Role field -->
+							<div class="form-group mt-2">
+								<label for="role" >Role</label> 
+								<select class="form-select form-select-lg mb-3" name="role" id="role" th:value="${user.role}"  aria-label=".form-select-lg example">
+								  <option selected>--select role--</option>
+								  <option value="ROLE_ADMIN">Admin</option>
+								  <option value="ROLE_MANAGER">Manager</option>
+								  <option value="ROLE_USER">User</option>
+								</select>
+							</div>
+						
+							<!-- name field -->
+							<div class="form-group mt-2">
+								<label for="name" >Your Name</label> 
+								<input type="text" class="form-control "name="name" id="name" 
+									th:value="${user.name}" 
+									th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
+									placeholder="Enter Your Name Here" required="required" />
+								<div class="invalid-feedback" th:each="e:${#fields.errors('name')}" th:text="${e}"></div>
+							</div>
+							<!-- email field -->
+							<div class="form-group mt-2">
+								<label for="email" >Your Email</label> 
+								<input type="email" class="form-control" name="email" id="email" 
+									th:value="${user.email}"
+									th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
+									placeholder="Enter Your Email Here" required="required" />
+								<div class="invalid-feedback" th:each="e:${#fields.errors('email')}" th:text="${e}"></div>
+							</div>
+							<!-- password field -->
+							<div class="form-group mt-2">
+								<label for="password" >Your Password</label> 
+								<input type="password" class="form-control" name="password" id="password" 
+									th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"
+									placeholder="Enter Your Password Here" required="required" />
+								<div class="invalid-feedback" th:each="e:${#fields.errors('password')}" th:text="${e}"></div>
+							</div>
+							
+							<!-- button -->
+							<div class="container text-center mt-2">
+								<button type="submit" class="btn bg-primary text-white">Submit</button>
+								<button type="reset" class="btn btn-warning ">Reset</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

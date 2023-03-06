@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Add Product</title>
+</head>
+<body>
+	<section style="margin: 20px;">
+		<div class="card">
+			<div class="card-body">
+				<h1 class="text-center">Add Product</h1>
+				
+				<div th:if="${session.message}" class="container">
+					<div th:classappend="${'alert-'+session.message.type}" class="alert text-center" >
+						<span th:text="${session.message.content}"></span>
+					  	<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+					</div>			  		
+				</div>
+						
+				<div class="container-fluid mt-2">
+					<div class="row">
+						<div class="col-md-10 offset-md-1">
+							<form action="" th:action="@{/user/process-product}"
+								class="mt-2"
+								th:object="${product}" 
+								enctype="multipart/form-data" 
+								method="post">
+								
+								<!-- Product name -->
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text"><b><i class="fa fa-plus"></i></b></div>
+									</div>
+									<input type="text" class="form-control" id="pname" name="pname" 
+										placeholder="Enter Product Name here" required="required"/>
+								</div>
+								<!-- description -->
+								<div class="form-group mt-2">
+									<textarea class="form-control" name="description" id="mytextarea" rows="5" 
+										placeholder="Enter product description" ></textarea>
+								</div>
+								<!-- Product image -->
+								 <div class="custome-file mt-2">
+									<input type="file" name="profileImage" />
+								</div> 
+								<!-- button -->
+								<div class="container text-center mt-2">
+									<button type="submit" class="btn bg-primary text-white">Add Product</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- tiny.cloud -->
+		<!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+		<script>
+			tinymce.init({
+				selector : '#mytextarea'
+			});
+		</script> -->
+	</section>
+</body>
+</html>

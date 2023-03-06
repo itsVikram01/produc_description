@@ -1,0 +1,126 @@
+body {
+	background: url(../img/bg.jpg);
+	font-family: "Lato", sans-serif;
+}
+
+.bg-primary {
+	background: #009688 !important;
+}
+
+.banner {
+	width: 100%;
+	height: 36em;
+	background: url(../img/bg.jpg);
+	background-size: cover;
+	color: white;
+}
+
+.card {
+	padding: 35px;
+	height:100%;
+	background-color: #f1f1f1;
+	margin: 0 auto;
+}
+
+.navbar-nav {
+	right: auto;
+}
+
+/* sidebar css*/
+
+@media only screen and (maxwidth:600px){
+	.sidebar {
+		display:none;
+		height: 100vh;
+		width: 80% !important;
+		position: fixed;
+		background:white;
+		position:fixed;
+		padding-top: 60px;
+	}
+	.content{
+		margin-left: 0% !important;
+	}
+	
+}
+
+.sidebar {
+	height: 100%;
+	width: 20%;
+	position: fixed;
+	background:silver;
+	padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+}
+
+.sidebar a:hover {
+	background: #e2e2e2;
+}
+
+/*
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 24px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+*/
+
+.sidebar .crossBtn{
+	position: absolute;
+	top: 0px;
+	right: 35px;
+	font-size: 36px;
+	cursor: pointer;
+}
+
+
+/*content css */
+.content {
+	height: 100%;
+	margin-left: 25%;
+	transition: margin-left;
+}
+
+
+.openbtn {
+  font-size: 24px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 10px;
+  border: none;
+}
+
+.openbtn:hover {
+	background-color: #444;
+}
+
+.myprofile_pic{
+	width: 40px;
+	height: 40px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+
+/* Search CSS */
+
+.search-container{
+	position: relative;
+}
+.search-result{
+	position: absolute;
+	background: white;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid gray;
+	display: none;
+}

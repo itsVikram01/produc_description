@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>View Products</title>
+</head>
+<body>
+	<section style="margin: 20px;">
+		<div class="card">
+			<div class="card-body">
+				<div class="text-center">
+					<h1>
+						<span th:text="${user.name } + ' Products List'"></span>
+					</h1>
+				</div>
+				<div th:if="${session.message}" class="container">
+					<div th:classappend="${'alert-'+session.message.type}"
+						class="alert text-center">
+						<span th:text="${session.message.content}"></span>
+						<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+					</div>
+				</div>
+				
+				<!-- each product in card -->
+				<div th:each="p : ${products}" class="card d-inline-block mr-3"	style="width: 16rem;height:100%;">
+					<img class="card-img-top" th:src="@{'/img/' + ${p.image}}" alt="product_image" style="height: 100px;">
+					<div class="card-body">
+						<a href="" th:href="@{'/user/'+${p.pid}+'/product'}"> 
+							<span th:text="'PDESC'+${p.pid}"></span>
+						</a>
+						<p class="card-text" th:text="${p.pname}"></p>
+						<!-- <p class="card-text" th:text="${p.description}"></p> -->
+						<form th:action="@{'/user/update-product/' + ${p.pid}}"
+							method="post" class="btn btn-primary btn-sm">
+							<button type="submit" class="btn btn-primary btn-sm">Update</button>
+						</form>
+						<a class="btn btn-danger btn-sm" th:onclick="|deleteProduct('${p.pid}')|">Delete</a>
+					</div>
+				</div>
+
+
+
+				<!-- Pagination -->
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li th:if="${currentPage != 0}" class="page-item"><a
+							class="page-link"
+							th:href="@{'/user/view-products/'+${currentPage-1}}">Previous</a></li>
+
+						<li class="page-item"
+							th:classappend="${currentPage==n-1?'active':''}"
+							th:each="n:${#numbers.sequence(1,tatalPages)}"><a
+							class="page-link" th:href="@{'/user/view-products/'+${n-1}}">
+								<span th:text="${n}"></span>
+						</a></li>
+
+						<li th:if="${currentPage+1 != tatalPages}" class="page-item"><a
+							class="page-link"
+							th:href="@{'/user/view-products/'+${currentPage+1}}">Next</a></li>
+					</ul>
+				</nav>
+				<!-- end pagination -->
+			</div>
+		</div>
+	</section>
+</body>
+</html>
